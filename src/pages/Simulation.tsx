@@ -11,7 +11,7 @@ const Simulation = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <main className="flex-1 py-6 sm:py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-6 sm:mb-8 animate-fade-in">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3">
