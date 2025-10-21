@@ -11,10 +11,10 @@ const Footer = () => {
           <div className="flex items-center justify-center gap-2 text-sm text-foreground">
             <span>Created with</span>
             <Heart className="h-4 w-4 text-destructive fill-destructive animate-pulse-glow" />
-            <span>by <strong>Karl Santino Sacayan</strong></span>
+            <span>by <strong>GROUP POGI FROM TW-03</strong></span>
           </div>
           <p className="text-xs text-muted-foreground">
-            GED0011 Project • Climate Education Tool
+            GED0011 FINAL PROJECT
           </p>
         </div>
       </div>
