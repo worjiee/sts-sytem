@@ -37,7 +37,7 @@ const Contact = () => {
     {
       id: 1,
       name: "Karl Santino Sacayan",
-      role: "Project Lead Developer",
+      role: "Team Leader",
       image: "/lrak.jpg",
       social: {
         instagram: "https://www.instagram.com/karl.morgann/"
@@ -64,7 +64,7 @@ const Contact = () => {
     {
       id: 4,
       name: "James Archie Ebora",
-      role: "UI/UX Designer",
+      role: "Researcher",
       image: "/jeebora.png",
       social: {
         instagram: "https://www.instagram.com/vntgchie_/"
@@ -73,7 +73,7 @@ const Contact = () => {
     {
       id: 5,
       name: "Mark Dustine Cadiente",
-      role: "UI/UX Designer",
+      role: "Researcher",
       image: "/dustinee.png",
       social: {
         instagram: "https://www.instagram.com/markyyeyyy/"
@@ -82,7 +82,7 @@ const Contact = () => {
     {
       id: 6,
       name: "Raven Mendoza",
-      role: "UI/UX Designer",
+      role: "Simulation Operator",
       image: "/venn.jpg",
       social: {
         instagram: "https://www.instagram.com/ravenmndz_/"
@@ -100,7 +100,7 @@ const Contact = () => {
     {
       id: 8,
       name: "Navin Kumar",
-      role: "UI/UX Designer",
+      role: "SDG Analyst",
       image: "/kumar.png",
       social: {
         instagram: "https://www.instagram.com/nnav_.0/"
