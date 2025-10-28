@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, TrendingUp, Brain, BarChart3 } from "lucide-react";
-import NetLogoIntegration from "./NetLogoIntegration";
+import { AlertCircle, TrendingUp } from "lucide-react";
 
 interface SimulationPanelProps {
   co2: number;
@@ -29,22 +26,22 @@ const SimulationPanel = ({ co2, setCO2 }: SimulationPanelProps) => {
   return (
     <div className="space-y-4 sm:space-y-6">
       <Card className="shadow-medium border-border animate-slide-up">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+        <CardHeader className="pb-6">
+          <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
+            <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             CO₂ Level Control
           </CardTitle>
-          <CardDescription className="text-sm">
+          <CardDescription className="text-sm sm:text-base">
             Adjust atmospheric CO₂ concentration (parts per million)
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6">
-          <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <Label htmlFor="co2-slider" className="text-sm font-medium">
+        <CardContent className="space-y-6 sm:space-y-8">
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <Label htmlFor="co2-slider" className="text-base sm:text-lg font-medium">
                 CO₂ Concentration
               </Label>
-              <span className="text-xl sm:text-2xl font-bold text-primary">
+              <span className="text-3xl sm:text-4xl font-bold text-primary">
                 {co2} ppm
               </span>
             </div>
@@ -56,7 +53,7 @@ const SimulationPanel = ({ co2, setCO2 }: SimulationPanelProps) => {
               step={5}
               value={[co2]}
               onValueChange={(value) => setCO2(value[0])}
-              className="py-2 sm:py-4"
+              className="py-4 sm:py-6"
             />
             
             <div className="flex justify-between text-xs text-muted-foreground">
@@ -65,27 +62,27 @@ const SimulationPanel = ({ co2, setCO2 }: SimulationPanelProps) => {
             </div>
           </div>
           
-          <div className={`rounded-lg p-4 sm:p-6 ${severity.bg} transition-colors duration-300`}>
-            <div className="flex items-start gap-3">
-              <AlertCircle className={`h-4 w-4 sm:h-5 sm:w-5 mt-1 flex-shrink-0 ${severity.color}`} />
+          <div className={`rounded-lg p-6 sm:p-8 ${severity.bg} transition-colors duration-300`}>
+            <div className="flex items-start gap-4">
+              <AlertCircle className={`h-6 w-6 sm:h-7 sm:w-7 mt-1 flex-shrink-0 ${severity.color}`} />
               <div className="flex-1 min-w-0">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
-                  <span className="text-sm font-medium text-foreground">Temperature Impact</span>
-                  <span className={`text-xs font-semibold px-2 py-1 rounded ${severity.bg} ${severity.color} self-start sm:self-auto`}>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2">
+                  <span className="text-base sm:text-lg font-medium text-foreground">Temperature Impact</span>
+                  <span className={`text-sm font-semibold px-3 py-1.5 rounded ${severity.bg} ${severity.color} self-start sm:self-auto`}>
                     {severity.label}
                   </span>
                 </div>
-                <div className={`text-2xl sm:text-3xl font-bold ${severity.color} mb-1`}>
+                <div className={`text-4xl sm:text-5xl font-bold ${severity.color} mb-2`}>
                   {temperature.toFixed(2)}°C
                 </div>
-                <div className="text-xs sm:text-sm text-muted-foreground">
+                <div className="text-sm sm:text-base text-muted-foreground">
                   +{tempIncrease.toFixed(2)}°C above pre-industrial levels
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="text-xs sm:text-sm text-muted-foreground space-y-1 pt-2 border-t border-border">
+          <div className="text-sm sm:text-base text-muted-foreground space-y-2 pt-4 border-t border-border">
             <p>
               <strong>Current CO₂ level:</strong> ~420 ppm (2024)
             </p>
@@ -98,31 +95,6 @@ const SimulationPanel = ({ co2, setCO2 }: SimulationPanelProps) => {
           </div>
         </CardContent>
       </Card>
-
-      <Tabs defaultValue="netlogo" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 h-auto">
-          <TabsTrigger value="netlogo" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm py-2 px-3">
-            <Brain className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span className="hidden xs:inline">NetLogo Model</span>
-            <span className="xs:hidden">Model</span>
-          </TabsTrigger>
-          <TabsTrigger value="chart" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm py-2 px-3">
-            <BarChart3 className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span className="hidden xs:inline">Data Chart</span>
-            <span className="xs:hidden">Chart</span>
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="netlogo" className="mt-4">
-          <NetLogoIntegration co2={co2} />
-        </TabsContent>
-        <TabsContent value="chart" className="mt-4">
-          <div className="text-center py-6 sm:py-8 text-muted-foreground">
-            <BarChart3 className="h-8 w-8 sm:h-12 sm:w-12 mx-auto mb-4 opacity-50" />
-            <p className="text-sm sm:text-base">Temperature chart will be displayed here</p>
-            <p className="text-xs sm:text-sm">Switch to the NetLogo tab to see the interactive model</p>
-          </div>
-        </TabsContent>
-      </Tabs>
     </div>
   );
 };

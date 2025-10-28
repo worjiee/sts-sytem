@@ -33,12 +33,16 @@ const Contact = () => {
     }
   };
 
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
   const teamMembers = [
     {
       id: 1,
       name: "Karl Santino Sacayan",
       role: "Team Leader",
       image: "/lrak.jpg",
+      bio: "Leading the team with strategic vision and coordination. Oversees project development and ensures alignment with climate education goals.",
+      expertise: ["Project Management", "Team Coordination", "Strategic Planning"],
       social: {
         instagram: "https://www.instagram.com/karl.morgann/"
       }
@@ -48,6 +52,8 @@ const Contact = () => {
       name: "Andrei Shinjiro Pelayo",
       role: "Presenter",
       image: "/jiro.png",
+      bio: "Expert in communicating complex climate science concepts. Delivers engaging presentations on climate modeling and simulation results.",
+      expertise: ["Public Speaking", "Data Visualization", "Science Communication"],
       social: {
         instagram: "https://www.instagram.com/jirosaurr_/"
       }
@@ -57,6 +63,8 @@ const Contact = () => {
       name: "John Carl Escultura",
       role: "Researcher",
       image: "/carl.png",
+      bio: "Conducts in-depth research on climate patterns and environmental impact. Contributes to data analysis and scientific documentation.",
+      expertise: ["Climate Research", "Data Analysis", "Environmental Science"],
       social: {
         instagram: "https://www.instagram.com/whoisjcarl/"
       }
@@ -66,6 +74,8 @@ const Contact = () => {
       name: "James Archie Ebora",
       role: "Researcher",
       image: "/jeebora.png",
+      bio: "Focuses on climate change mitigation strategies and sustainable development. Researches innovative solutions for environmental challenges.",
+      expertise: ["Sustainability Research", "Climate Mitigation", "Policy Analysis"],
       social: {
         instagram: "https://www.instagram.com/vntgchie_/"
       }
@@ -75,6 +85,8 @@ const Contact = () => {
       name: "Mark Dustine Cadiente",
       role: "Researcher",
       image: "/dustinee.png",
+      bio: "Analyzes climate data trends and patterns. Contributes to research documentation and scientific literature review.",
+      expertise: ["Data Analysis", "Research Documentation", "Statistical Analysis"],
       social: {
         instagram: "https://www.instagram.com/markyyeyyy/"
       }
@@ -84,6 +96,8 @@ const Contact = () => {
       name: "Raven Mendoza",
       role: "Simulation Operator",
       image: "/venn.jpg",
+      bio: "Manages and operates climate simulation models. Ensures accurate data input and monitors simulation performance.",
+      expertise: ["NetLogo Modeling", "Simulation Management", "Technical Operations"],
       social: {
         instagram: "https://www.instagram.com/ravenmndz_/"
       }
@@ -93,6 +107,8 @@ const Contact = () => {
       name: "Dwayne Lee",
       role: "Presenter",
       image: "/lee.png",
+      bio: "Specializes in presenting research findings and simulation outcomes. Creates engaging narratives around climate data.",
+      expertise: ["Presentation Design", "Storytelling", "Audience Engagement"],
       social: {
         instagram: "https://www.instagram.com/kerrvin_/"
       }
@@ -102,6 +118,8 @@ const Contact = () => {
       name: "Navin Kumar",
       role: "SDG Analyst",
       image: "/kumar.png",
+      bio: "Analyzes alignment with UN Sustainable Development Goals. Evaluates project impact on global sustainability targets.",
+      expertise: ["SDG Framework", "Impact Assessment", "Sustainability Metrics"],
       social: {
         instagram: "https://www.instagram.com/nnav_.0/"
       }
@@ -272,37 +290,82 @@ const Contact = () => {
             </p>
             
             <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              {teamMembers.map((member) => (
-                <Card 
-                key={member.id} 
-                className="bg-gradient-to-br from-blue-50 to-purple-50 shadow-medium border-border hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-4 sm:p-6 text-center">
-                    <div className="mb-3 sm:mb-4">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto object-cover border-2 border-border"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{member.name}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">{member.role}</p>
-                    
-                    <div className="flex justify-center gap-1 sm:gap-2">
-                      {Object.entries(member.social).map(([platform, url]) => (
-                        <Button
-                          key={platform}
-                          variant="ghost"
-                          size="sm"
-                          className="h-7 w-7 sm:h-8 sm:w-8 p-0"
-                          onClick={() => window.open(url, '_blank')}
-                        >
-                          {getSocialIcon(platform)}
-                        </Button>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              {teamMembers.map((member) => {
+                const isExpanded = expandedCard === member.id;
+                return (
+                  <Card 
+                    key={member.id} 
+                    className={`bg-gradient-to-br from-blue-50 to-purple-50 shadow-medium border-border hover:shadow-lg transition-all duration-300 cursor-pointer ${
+                      isExpanded ? 'ring-2 ring-primary' : ''
+                    }`}
+                    onClick={() => setExpandedCard(isExpanded ? null : member.id)}
+                  >
+                    <CardContent className="p-4 sm:p-6 text-center">
+                      <div className="mb-3 sm:mb-4">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className={`mx-auto object-cover border-2 border-border rounded-full transition-all duration-300 ${
+                            isExpanded 
+                              ? 'w-24 h-24 sm:w-32 sm:h-32 ring-4 ring-primary/20' 
+                              : 'w-16 h-16 sm:w-20 sm:h-20'
+                          }`}
+                        />
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{member.name}</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">{member.role}</p>
+                      
+                      {/* Expanded Content */}
+                      <div 
+                        className={`overflow-hidden transition-all duration-300 ${
+                          isExpanded ? 'max-h-96 opacity-100 mb-4' : 'max-h-0 opacity-0'
+                        }`}
+                      >
+                        <div className="text-left space-y-3 pt-2 border-t border-border/50">
+                          <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">
+                            {member.bio}
+                          </p>
+                          <div>
+                            <h4 className="text-xs font-semibold text-foreground mb-2">Expertise:</h4>
+                            <div className="flex flex-wrap gap-1.5">
+                              {member.expertise.map((skill, index) => (
+                                <span 
+                                  key={index}
+                                  className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-center gap-1 sm:gap-2">
+                        {Object.entries(member.social).map(([platform, url]) => (
+                          <Button
+                            key={platform}
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 sm:h-8 sm:w-8 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(url, '_blank');
+                            }}
+                          >
+                            {getSocialIcon(platform)}
+                          </Button>
+                        ))}
+                      </div>
+                      
+                      {/* Expand/Collapse Indicator */}
+                      <div className="mt-3 text-xs text-muted-foreground">
+                        {isExpanded ? '▲ Click to collapse' : '▼ Click for details'}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -44,25 +44,26 @@ const About = () => {
                   <div className="p-3 rounded-lg bg-secondary/10">
                     <BookOpen className="h-6 w-6 text-secondary" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <CardTitle className="text-2xl mb-2">How It Works</CardTitle>
-                    <CardDescription className="text-base space-y-3">
-                      <p>
-                        This simulator uses a simplified climate model based on established scientific relationships 
-                        between greenhouse gases and temperature. The calculation follows this principle:
-                      </p>
-                      <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm border border-border">
-                        Temperature = 14°C + (CO₂ - 280 ppm) × 0.01
-                      </div>
-                      <p>
-                        Where 14°C represents the pre-industrial global average temperature and 280 ppm is the 
-                        pre-industrial CO₂ level. This linear approximation helps demonstrate the concept, though 
-                        real climate systems involve many additional factors and feedback loops.
-                      </p>
+                    <CardDescription className="text-base">
+                      This simulator uses a simplified climate model based on established scientific relationships 
+                      between greenhouse gases and temperature.
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
+              <CardContent className="text-base space-y-3 text-muted-foreground">
+                <p>The calculation follows this principle:</p>
+                <div className="bg-muted/50 p-4 rounded-lg font-mono text-sm border border-border">
+                  Temperature = 14°C + (CO₂ - 280 ppm) × 0.01
+                </div>
+                <p>
+                  Where 14°C represents the pre-industrial global average temperature and 280 ppm is the 
+                  pre-industrial CO₂ level. This linear approximation helps demonstrate the concept, though 
+                  real climate systems involve many additional factors and feedback loops.
+                </p>
+              </CardContent>
             </Card>
             
             <Card className="shadow-medium border-border animate-slide-up" style={{ animationDelay: "0.2s" }}>
@@ -71,28 +72,30 @@ const About = () => {
                   <div className="p-3 rounded-lg bg-accent/10">
                     <Lightbulb className="h-6 w-6 text-accent" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <CardTitle className="text-2xl mb-2">SDG 13: Climate Action</CardTitle>
-                    <CardDescription className="text-base space-y-3">
-                      <p>
-                        This project directly supports United Nations Sustainable Development Goal 13: Climate Action. 
-                        SDG 13 calls for urgent action to combat climate change and its impacts. The goal includes:
-                      </p>
-                      <ul className="list-disc list-inside space-y-2 ml-4">
-                        <li>Strengthening resilience and adaptive capacity to climate-related hazards</li>
-                        <li>Integrating climate change measures into national policies and planning</li>
-                        <li>Improving education and awareness on climate change mitigation</li>
-                        <li>Implementing commitments under the Paris Agreement</li>
-                      </ul>
-                      <p>
-                        By making climate science accessible and interactive, we contribute to the educational 
-                        component of climate action, empowering individuals to understand and address this 
-                        global challenge.
-                      </p>
+                    <CardDescription className="text-base">
+                      This project directly supports United Nations Sustainable Development Goal 13: Climate Action.
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
+              <CardContent className="text-base space-y-3 text-muted-foreground">
+                <p>
+                  SDG 13 calls for urgent action to combat climate change and its impacts. The goal includes:
+                </p>
+                <ul className="list-disc list-inside space-y-2 ml-4">
+                  <li>Strengthening resilience and adaptive capacity to climate-related hazards</li>
+                  <li>Integrating climate change measures into national policies and planning</li>
+                  <li>Improving education and awareness on climate change mitigation</li>
+                  <li>Implementing commitments under the Paris Agreement</li>
+                </ul>
+                <p>
+                  By making climate science accessible and interactive, we contribute to the educational 
+                  component of climate action, empowering individuals to understand and address this 
+                  global challenge.
+                </p>
+              </CardContent>
             </Card>
             
             <Card className="shadow-medium border-border animate-slide-up" style={{ animationDelay: "0.3s" }}>
@@ -101,28 +104,29 @@ const About = () => {
                   <div className="p-3 rounded-lg bg-primary/10">
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <CardTitle className="text-2xl mb-2">Technical Implementation</CardTitle>
-                    <CardDescription className="text-base space-y-3">
-                      <p>
-                        This application is built using modern web technologies to ensure a smooth, responsive 
-                        user experience:
-                      </p>
-                      <ul className="list-disc list-inside space-y-2 ml-4">
-                        <li><strong>React</strong> - Component-based UI framework for interactive interfaces</li>
-                        <li><strong>TypeScript</strong> - Type-safe development for reliability</li>
-                        <li><strong>Tailwind CSS</strong> - Utility-first styling for beautiful, responsive design</li>
-                        <li><strong>Recharts</strong> - Data visualization library for interactive charts</li>
-                        <li><strong>Vite</strong> - Fast build tool and development server</li>
-                      </ul>
-                      <p className="mt-4">
-                        Developed as part of the GED0011 course project, this application demonstrates the 
-                        practical application of web development skills to address real-world educational needs.
-                      </p>
+                    <CardDescription className="text-base">
+                      This application is built using modern web technologies to ensure a smooth, responsive 
+                      user experience.
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
+              <CardContent className="text-base space-y-3 text-muted-foreground">
+                <p>Technologies used:</p>
+                <ul className="list-disc list-inside space-y-2 ml-4">
+                  <li><strong>React</strong> - Component-based UI framework for interactive interfaces</li>
+                  <li><strong>TypeScript</strong> - Type-safe development for reliability</li>
+                  <li><strong>Tailwind CSS</strong> - Utility-first styling for beautiful, responsive design</li>
+                  <li><strong>Recharts</strong> - Data visualization library for interactive charts</li>
+                  <li><strong>Vite</strong> - Fast build tool and development server</li>
+                </ul>
+                <p>
+                  Developed as part of the GED0011 course project, this application demonstrates the 
+                  practical application of web development skills to address real-world educational needs.
+                </p>
+              </CardContent>
             </Card>
             
             <div className="mt-8 p-8 rounded-2xl bg-gradient-hero text-white text-center shadow-strong animate-slide-up" style={{ animationDelay: "0.4s" }}>

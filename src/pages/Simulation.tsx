@@ -2,8 +2,11 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import SimulationPanel from "@/components/SimulationPanel";
 import TemperatureChart from "@/components/TemperatureChart";
+import SimpleNetLogoModel from "@/components/SimpleNetLogoModel";
 import Footer from "@/components/Footer";
 import { Info } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LineChart, CloudSun } from "lucide-react";
 
 const Simulation = () => {
   const [co2, setCO2] = useState(420); // Current approximate CO₂ level
@@ -25,21 +28,41 @@ const Simulation = () => {
           <div className="bg-accent/10 border border-accent/30 rounded-lg p-3 sm:p-4 mb-6 sm:mb-8 flex flex-col sm:flex-row items-start gap-3 animate-fade-in">
             <Info className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="text-sm text-foreground">
-              <p className="font-medium mb-1">How this works:</p>
+              <p className="font-medium mb-1">Interactive Climate Model:</p>
               <p className="text-muted-foreground">
-                This simplified model shows the relationship between atmospheric CO₂ concentration and global temperature. 
-                Each 100 ppm increase in CO₂ results in approximately 1°C temperature rise. Real climate systems are more complex, 
-                but this demonstrates the fundamental relationship.
+                Adjust the CO₂ levels with the slider to see temperature projections. 
+                The NetLogo model tab features the official Climate Change simulation where you can experiment with 
+                clouds, greenhouse gases, sun brightness, and albedo to observe their effects on global temperature.
               </p>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
-            <div className="order-1 xl:order-1">
+          <div className="space-y-6 lg:space-y-8">
+            {/* CO2 Level Control - Full Width */}
+            <div className="w-full">
               <SimulationPanel co2={co2} setCO2={setCO2} />
             </div>
-            <div className="order-2 xl:order-2">
-              <TemperatureChart co2={co2} />
+            
+            {/* Climate Change Model - Full Width */}
+            <div className="w-full">
+              <Tabs defaultValue="climate-model" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="climate-model" className="flex items-center gap-2">
+                    <CloudSun className="h-4 w-4" />
+                    NetLogo Model
+                  </TabsTrigger>
+                  <TabsTrigger value="chart" className="flex items-center gap-2">
+                    <LineChart className="h-4 w-4" />
+                    Data Chart
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="climate-model" className="mt-4">
+                  <SimpleNetLogoModel co2={co2} />
+                </TabsContent>
+                <TabsContent value="chart" className="mt-4">
+                  <TemperatureChart co2={co2} />
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
           
