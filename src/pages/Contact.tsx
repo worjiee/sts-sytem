@@ -295,7 +295,7 @@ const Contact = () => {
                 return (
                   <Card 
                     key={member.id} 
-                    className={`bg-gradient-to-br from-blue-50 to-purple-50 shadow-medium border-border hover:shadow-lg transition-all duration-300 cursor-pointer ${
+                    className={`bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 shadow-medium border-border hover:shadow-lg transition-all duration-300 cursor-pointer ${
                       isExpanded ? 'ring-2 ring-primary' : ''
                     }`}
                     onClick={() => setExpandedCard(isExpanded ? null : member.id)}
